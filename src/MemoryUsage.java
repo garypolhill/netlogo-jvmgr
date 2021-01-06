@@ -37,13 +37,13 @@ public class MemoryUsage implements Reporter {
 		case INIT_NON_HEAP:
 		case MAX_HEAP:
 		case MAX_NON_HEAP:
-			return SyntaxJ.commandSyntax(new int[] {Syntax.VoidType()}, Syntax.NumberType());
+			return SyntaxJ.reporterSyntax(Syntax.NumberType(), "O---");
 		case USED_PCT_STR:
 		case USED_HR:
 		case USED_HEAP_HR:
 		case USED_NON_HEAP_HR:
 		case COMMITTED_HR:
-			return SyntaxJ.commandSyntax(new int[] {Syntax.VoidType()}, Syntax.StringType());
+			return SyntaxJ.reporterSyntax(Syntax.StringType(), "O---");
 		default:
 			throw new RuntimeException("BUG!");
 		}
@@ -82,7 +82,7 @@ public class MemoryUsage implements Reporter {
 					|| heap_committed == -1L || non_heap_committed == -1L) {
 				return Double.NaN;
 			}
-			return String.format("%g", Math.round((100.0 * (double)(heap_used + non_heap_used))
+			return String.format("%d%%", Math.round((100.0 * (double)(heap_used + non_heap_used))
 					/ (double)(heap_committed + non_heap_committed)));
 		case USED_HEAP:
 			heap_used = JVMGRExtension.getHeapUsed();

@@ -496,19 +496,19 @@ public class JVMGRExtension extends DefaultClassManager {
 		long rem_hours = hours - (days * 24L);
 		String result = "";
 		if(days > 0L) {
-			result = String.format("%ldT%02ld:%02ld:%02ld.%09ld", days, rem_hours, rem_min, rem_sec, rem_ns);
+			result = String.format("%dT%02d:%02d:%02d.%09d", days, rem_hours, rem_min, rem_sec, rem_ns);
 		}
 		else if(hours > 0L) {
-			result = String.format("%ld:%02ld:%02ld.%09ld", hours, rem_min, rem_sec, rem_ns);
+			result = String.format("%d:%02d:%02ld.%09d", hours, rem_min, rem_sec, rem_ns);
 		}
 		else if(minutes > 0L) {
-			result = String.format("%ld:%02ld.%09ld", minutes, rem_sec, rem_ns);
+			result = String.format("%d:%02d.%09d", minutes, rem_sec, rem_ns);
 		}
 		else if(seconds > 0L) {
-			result = String.format("%ld.%09ld", seconds, rem_ns);
+			result = String.format("%d.%09d", seconds, rem_ns);
 		}
 		else {
-			result = String.format("0.%09ld", duration * ns_per_unit_time);
+			result = String.format("0.%09d", duration * ns_per_unit_time);
 		}
 		while(result.endsWith("0")) {
 			result = result.substring(0, result.length() - 1);

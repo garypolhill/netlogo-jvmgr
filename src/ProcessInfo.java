@@ -47,7 +47,7 @@ public class ProcessInfo implements Reporter {
 		case GC_TIME:
 		case JVM_PROC_COUNT:
 		case SYSTEM_LOAD:
-			return SyntaxJ.commandSyntax(new int[] {Syntax.VoidType()}, Syntax.NumberType());
+			return SyntaxJ.reporterSyntax(Syntax.NumberType(), "O---");
 		case JVM_NAME:
 		case CPU_TIME_STR:
 		case USER_TIME_STR:
@@ -55,7 +55,7 @@ public class ProcessInfo implements Reporter {
 		case WAITED_TIME_STR:
 		case BLOCKED_TIME_STR:
 		case JVM_UPTIME_STR:
-			return SyntaxJ.commandSyntax(new int[] {Syntax.VoidType()}, Syntax.StringType());
+			return SyntaxJ.reporterSyntax(Syntax.StringType(), "O---");
 		default:
 			throw new RuntimeException("BUG!");
 		}
@@ -141,26 +141,26 @@ public class ProcessInfo implements Reporter {
 			return name == null ? "NA" : name;
 		case CPU_TIME_STR:
 			cpu_time_all = JVMGRExtension.getAllThreadCpuTimeNanos();
-			return cpu_time_all == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(cpu_time_all, 1000000000L);
+			return cpu_time_all == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(cpu_time_all, 1L);
 		case USER_TIME_STR:
 			user_time_all = JVMGRExtension.getAllThreadUserTimeNanos();
-			return user_time_all == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(user_time_all, 1000000000L);
+			return user_time_all == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(user_time_all, 1L);
 		case SYSTEM_TIME_STR:
 			cpu_time_all = JVMGRExtension.getAllThreadCpuTimeNanos();
 			user_time_all = JVMGRExtension.getAllThreadUserTimeNanos();
 			if(cpu_time_all == -1L || user_time_all == -1L) {
 				return "NA";
 			}
-			return JVMGRExtension.getHumanReadableTime(cpu_time_all - user_time_all, 1000000000L);
+			return JVMGRExtension.getHumanReadableTime(cpu_time_all - user_time_all, 1L);
 		case WAITED_TIME_STR:
 			waited_time = JVMGRExtension.getAllThreadWaitedTimeMillis();
-			return waited_time == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(waited_time, 1000L);
+			return waited_time == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(waited_time, 1000000L);
 		case BLOCKED_TIME_STR:
 			blocked_time = JVMGRExtension.getAllThreadBlockedTimeMillis();
-			return blocked_time == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(blocked_time, 1000L);
+			return blocked_time == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(blocked_time, 1000000L);
 		case JVM_UPTIME_STR:
 			uptime = JVMGRExtension.getJVMUptimeMillis();
-			return uptime == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(uptime, 1000L);
+			return uptime == -1L ? "NA" : JVMGRExtension.getHumanReadableTime(uptime, 1000000L);
 		default:
 			throw new ExtensionException("BUG!: ProcessInfo created with unrecognized cmd option");
 		}
