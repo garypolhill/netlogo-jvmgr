@@ -32,12 +32,12 @@ The following reporters are provided, none of which take any arguments, and all 
 + `mgr:blocked-count` A count of the number of times threads have been blocked from execution.
 + `mgr:waited-time` The total amount of time threads have spent waiting for a signal from another thread.
 + `mgr:waited-count` A count of the number of times threads have waited for a signal from another thread.
-+ `mgr:jvm-start-time` The (approximate) start time of the JVM in seconds since midnight UTC on 1 January 1970
++ `mgr:jvm-start-time` The (approximate) start time of the JVM in seconds since midnight UTC on 1 January 1970.
 + `mgr:jvm-uptime` The (approximate) amount of time the JVM has been running for (in seconds)
 + `mgr:gc-count` A count of the number of garbage collections the JVM has done.
 + `mgr:gc-time` The amount of time in seconds spent on garbage collection.
 + `mgr:jvm-proc-count` The number of cores available to the JVM.
-+ `mgr:system-load` The average system load over the last minute. See [the java documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage--) for more information.
++ `mgr:system-load` The average system load over the last minute. See the [Java documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage--) for more information.
 + `mgr:jvm-name` The name of the JVM. There's no guaranteed information contained here.
 + `mgr:cpu-time-str` A human-readable string option for `mgr:cpu-time`.
 + `mgr:user-time-str` A human-readable string option for `mgr:user-time`.
@@ -46,6 +46,6 @@ The following reporters are provided, none of which take any arguments, and all 
 + `mgr:blocked-time-str` A human-readable string option for `mgr:blocked-time`.
 + `mgr:jvm-uptime-str` A human-readable string option for `mgr:jvm-uptime`.
 
-Note that the ability to run these commands is sensitive to the particular Java Virtual Machine you are running, and any permission settings it has. Numerical commands return `Double.NaN` if the JVM does not support the command. Since it traps division by zero, NetLogo doesn't provide commands like `is-nan?` and `is-finite?` (and `is-number?` returns `true` for a `Double.NaN`). You can nevertheless still test for `Double.NaN` returned by one of the above functions by saying `(word mgr:`_`whatever`_`) = "NaN"`, or use `carefully` around any mathematical expressions using a numeric answer. Reporters ending `str` return `"NA"`. Java's `[java.lang.management](https://docs.oracle.com/javase/8/docs/api/java/lang/management/package-frame.html)` package provides many more methods that could be called to provide useful information. In this first release, I picked methods that are less likely to be unsupported.
+Note that the ability to run these commands is sensitive to the particular Java Virtual Machine you are running, and any permission settings it has. Numerical commands return `Double.NaN` if the JVM does not support the command. Since it traps division by zero, NetLogo doesn't provide commands like `is-nan?` and `is-finite?` (and `is-number?` returns `true` for a `Double.NaN`). You can nevertheless still test for `Double.NaN` returned by one of the above functions by saying `(word mgr:`_`whatever`_`) = "NaN"`, or use `carefully` around any mathematical expressions using a numeric answer. Reporters ending `str` return `"NA"`. Java's [`java.lang.management`](https://docs.oracle.com/javase/8/docs/api/java/lang/management/package-frame.html) package provides many more methods that could be called to provide useful information. In this first release, I picked methods that are less likely to be unsupported.
 
 The netlogo folder contains an example.
