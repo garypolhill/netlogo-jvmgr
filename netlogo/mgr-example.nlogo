@@ -70,8 +70,8 @@ SLIDER
 n-agents
 n-agents
 1000
-10000
-9000.0
+20000
+20000.0
 1000
 1
 NIL
