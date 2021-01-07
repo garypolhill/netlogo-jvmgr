@@ -499,7 +499,7 @@ public class JVMGRExtension extends DefaultClassManager {
 			result = String.format("%dT%02d:%02d:%02d.%09d", days, rem_hours, rem_min, rem_sec, rem_ns);
 		}
 		else if(hours > 0L) {
-			result = String.format("%d:%02d:%02ld.%09d", hours, rem_min, rem_sec, rem_ns);
+			result = String.format("%d:%02d:%02d.%09d", hours, rem_min, rem_sec, rem_ns);
 		}
 		else if(minutes > 0L) {
 			result = String.format("%d:%02d.%09d", minutes, rem_sec, rem_ns);
